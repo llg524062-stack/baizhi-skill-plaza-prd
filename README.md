@@ -7,7 +7,7 @@
 | 页面 | 说明 |
 | --- | --- |
 | `index.html` | 目录页 |
-| `prd.html` | 需求文档 PRD v1.0（10 章，含 9 张原型截图） |
+| `prd.html` | 需求文档 PRD v1.0（9 章，含 9 张原型截图） |
 | `app-prototype.html` | App 端原型：技能广场、添加技能浮窗、技能详情、问问助手 |
 | `pc-prototype.html` | PC 端原型：工作台 + 小智技能入口 / 浮窗 / 详情弹窗 |
 | `connector-app.html` / `connector-pc.html` | 连接器存量形态（背景参考） |
