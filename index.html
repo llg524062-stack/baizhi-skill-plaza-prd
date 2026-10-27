@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>App 技能广场建设 & 双端小智技能能力对齐 · PRD v1.0</title>
+<style>
+  :root{
+    --bg:#FAFAFB; --card:#FFFFFF; --line:#ECEEF3; --line-2:#E3E6EC;
+    --ink:#1D2129; --ink-2:#4E5969; --ink-3:#8A9199;
+    --brand:#165DFF; --brand-soft:#EEF3FF; --brand-line:#D9E4FF;
+    --ok:#00A870; --ok-soft:#EAF8F2; --violet:#7C5CFF; --violet-soft:#F2EFFF;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+    font-size:14px;line-height:1.7;-webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1000px;margin:0 auto;padding:64px 28px 72px}
+
+  .kicker{font-size:11.5px;letter-spacing:.06em;color:var(--ink-3);text-transform:uppercase;font-weight:600}
+  h1{font-size:27px;line-height:1.42;font-weight:700;letter-spacing:-.01em;margin:10px 0 0}
+  .sub{color:var(--ink-2);font-size:13.5px;margin:12px 0 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .dot-sep{width:3px;height:3px;border-radius:50%;background:#C9CDD4;display:inline-block}
+
+  .tag{display:inline-flex;align-items:center;height:22px;padding:0 9px;border-radius:6px;font-size:11.5px;font-weight:600;line-height:1}
+  .tag.new{background:var(--brand-soft);color:#1A4FD6;border:1px solid var(--brand-line)}
+  .tag.ok{background:var(--ok-soft);color:#00875A;border:1px solid #CBEBDD}
+  .tag.pl{background:#F5F6F8;color:var(--ink-2);border:1px solid var(--line)}
+  .tag.vi{background:var(--violet-soft);color:#5B3FD1;border:1px solid #E3DCFF}
+
+  /* 主卡 */
+  .hero{
+    display:block;background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:26px 28px;margin:26px 0 14px;transition:.18s;
+  }
+  .hero:hover{border-color:var(--brand-line);box-shadow:0 8px 28px rgba(22,93,255,.09);transform:translateY(-1px)}
+  .hero-top{display:flex;align-items:flex-start;gap:16px}
+  .ico{
+    width:46px;height:46px;flex:none;border-radius:13px;display:flex;align-items:center;justify-content:center;
+    background:var(--brand-soft);border:1px solid var(--brand-line);color:#1A4FD6;
+  }
+  .hero h2{margin:0;font-size:17.5px;font-weight:700;letter-spacing:-.01em}
+  .hero p{margin:6px 0 0;color:var(--ink-2);font-size:13px;line-height:1.65;max-width:640px}
+  .hero-cta{margin-left:auto;flex:none;display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 15px;
+    border-radius:9px;background:var(--brand);color:#fff;font-size:13px;font-weight:600;transition:.15s}
+  .hero:hover .hero-cta{background:#0E42D2}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+
+  /* 原型网格 */
+  .sec-h{display:flex;align-items:baseline;gap:10px;margin:34px 0 12px}
+  .sec-h h3{margin:0;font-size:14px;font-weight:700}
+  .sec-h span{font-size:12px;color:var(--ink-3)}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .card{
+    display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:18px 18px 16px;transition:.16s;min-height:158px;
+  }
+  .card:hover{border-color:var(--brand-line);box-shadow:0 6px 20px rgba(22,93,255,.07);transform:translateY(-1px)}
+  .card .ico{width:38px;height:38px;border-radius:11px}
+  .card h4{margin:13px 0 0;font-size:14.5px;font-weight:700}
+  .card p{margin:6px 0 0;color:var(--ink-2);font-size:12.5px;line-height:1.62;flex:1}
+  .foot-row{display:flex;align-items:center;gap:8px;margin-top:14px}
+  .go{font-size:12.5px;font-weight:600;color:var(--brand)}
+  .card:hover .go::after{content:" →"}
+  .foot{color:var(--ink-3);font-size:12px;margin-top:38px;padding-top:18px;border-top:1px solid var(--line);line-height:1.8}
+  .foot b{color:var(--ink-2);font-weight:600}
+
+  @media (max-width:760px){
+    .wrap{padding:40px 18px 56px}
+    h1{font-size:21px}
+    .grid{grid-template-columns:1fr}
+    .hero{padding:20px}
+    .hero-top{display:block}
+    .hero .ico{margin-bottom:12px}
+    .hero-cta{margin:16px 0 0;width:100%;justify-content:center}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">PRD · 百智 WiseNote</div>
+  <h1>App 技能广场建设 &amp; 双端小智技能能力对齐</h1>
+  <div class="sub">
+    <span>v1.0 评审稿</span><span class="dot-sep"></span>
+    <span>2026-10-27</span><span class="dot-sep"></span>
+    <span>需求文档 + 4 套高保真原型</span>
+  </div>
+
+  <a class="hero" href="prd.html" target="_blank" rel="noopener">
+    <div class="hero-top">
+      <div class="ico">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 3h8l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/>
+          <path d="M14 3v5h5"/><path d="M8.5 13h7M8.5 17h5"/>
+        </svg>
+      </div>
+      <div>
+        <h2>需求文档（PRD v1.0）</h2>
+        <p>10 章完整说明：需求背景、目标、名词与范围、核心链路（主链路 / 状态机 / 异常链）、App 与 PC 双端功能、一致性矩阵、规则汇总、24 条文案、16 个埋点事件，含 9 张原型截图。</p>
+      </div>
+      <span class="hero-cta">打开文档 →</span>
+    </div>
+    <div class="hero-meta">
+      <span class="tag new">App 新建 · PC 新增 + 对齐</span>
+      <span class="tag ok">本期仅平台技能</span>
+      <span class="tag pl">上限 15 / 3</span>
+      <span class="tag pl">7 个底部入口</span>
+      <span class="tag vi">9 张截图</span>
+    </div>
+  </a>
+
+  <div class="sec-h"><h3>高保真原型</h3><span>可直接点击交互，建议桌面端全屏查看</span></div>
+  <div class="grid">
+
+    <a class="card" href="app-prototype.html" target="_blank" rel="noopener">
+      <div class="ico">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 18.5h3"/>
+        </svg>
+      </div>
+      <h4>App 端 · 技能广场及使用</h4>
+      <p>我的页「技能」入口、技能广场二级页、会话内添加技能浮窗、技能详情浮窗、问问助手 7 个入口与回复结构。</p>
+      <div class="foot-row"><span class="tag new">新建</span><span class="go">查看原型</span></div>
+    </a>
+
+    <a class="card" href="pc-prototype.html" target="_blank" rel="noopener">
+      <div class="ico">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2.5" y="4" width="19" height="12.5" rx="2"/><path d="M8 20.5h8M12 16.5v4"/>
+        </svg>
+      </div>
+      <h4>PC 端 · 小智技能使用</h4>
+      <p>1440×900 画布：工作台 + 右栏小智，技能入口在「关联闪念」之后、会话内浮窗、技能详情弹窗（首页垂直居中）。</p>
+      <div class="foot-row"><span class="tag new">新增 + 对齐</span><span class="go">查看原型</span></div>
+    </a>
+
+    <a class="card" href="connector-app.html" target="_blank" rel="noopener">
+      <div class="ico">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9.5 14.5 14.5 9.5"/><path d="M7 12 5 14a3.5 3.5 0 0 0 5 5l2-2"/><path d="M17 12l2-2a3.5 3.5 0 0 0-5-5l-2 2"/>
+        </svg>
+      </div>
+      <h4>连接器 · App 端</h4>
+      <p>背景参考：工具（连接器）与技能的分界、授权与「2 端统一」现有形态，本期不改流程，仅新增「技能」并列入口。</p>
+      <div class="foot-row"><span class="tag pl">存量参考</span><span class="go">查看原型</span></div>
+    </a>
+
+    <a class="card" href="connector-pc.html" target="_blank" rel="noopener">
+      <div class="ico">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h6v6H4z"/><path d="M14 11h6v6h-6z"/><path d="M10 10h4M12 10v7"/>
+        </svg>
+      </div>
+      <h4>连接器 · PC 端</h4>
+      <p>背景参考：PC 能力中心三 Tab（专家 / 技能 / 连接器）的现状，系统连接器与自定义 MCP 配置，本期信息架构不动。</p>
+      <div class="foot-row"><span class="tag pl">存量参考</span><span class="go">查看原型</span></div>
+    </a>
+
+  </div>
+
+  <div class="foot">
+    <b>本期边界：</b>只支持从技能广场添加 / 卸载平台公开技能，<b>不做个人技能创建与上传</b>；广场只做添加与卸载，启用动作收口到会话与详情。<br>
+    <b>说明：</b>页面为高保真静态原型，交互与文案以 PRD 为准；所有数据为演示数据。
+  </div>
+
+</div>
+</body>
+</html>
