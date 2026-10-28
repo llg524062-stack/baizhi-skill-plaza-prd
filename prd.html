@@ -154,6 +154,49 @@
     details{border:none}
     details:not([open]) .dt-b{display:block}
   }
+
+/* ============ v2 视觉分级系统（仅样式层，不改正文） ============ */
+section{--tone:#8A9199;--soft:#F5F6F8;--softline:#E9EBF0;--tone-ink:#4E5969}
+#flow{--tone:#165DFF;--soft:#EEF3FF;--softline:#D9E4FF;--tone-ink:#2A3F6B}
+#app,#pc{--tone:#00875A;--soft:#EAF8F2;--softline:#CBEBDD;--tone-ink:#1F5E48}
+#matrix,#rule,#copy{--tone:#6B4EE6;--soft:#F3EFFE;--softline:#E3DCFF;--tone-ink:#4733A8}
+
+.sec{margin:18px 0}
+.sec-h{align-items:center;gap:14px;margin:-24px -26px 0;padding:16px 26px 0;background:var(--soft);border-radius:15px 15px 0 0}
+.sec-no{width:auto;height:auto;min-width:44px;justify-content:flex-start;background:none;border:0;border-radius:0;
+  color:var(--tone);font-size:30px;font-weight:600;letter-spacing:-1.2px;line-height:1;opacity:.3;font-variant-numeric:tabular-nums}
+.sec-h h2{font-size:17px;font-weight:600}
+.sec-h .chip{margin-left:auto;align-self:flex-start;margin-top:1px;background:#fff;border-color:var(--softline);color:var(--tone)}
+.sec-sub{margin:0 -26px 18px;padding:6px 26px 14px 84px;background:var(--soft);border-bottom:1px solid var(--softline);
+  border-radius:0 0 15px 15px;font-size:12.5px}
+
+h3{font-size:15px;font-weight:600;margin:26px 0 12px;padding:0 0 9px;border-bottom:1px solid var(--line);letter-spacing:-.01em;line-height:1.6}
+h3:first-of-type{margin-top:10px}
+h3 .h3n{display:inline-block;font-size:11px;font-weight:600;padding:1px 7px;border-radius:6px;background:var(--soft);
+  color:var(--tone);border:1px solid var(--softline);margin-right:8px;vertical-align:1.5px;line-height:1.7}
+h4{font-size:13.5px;font-weight:600;margin:20px 0 9px;color:var(--ink)}
+h4::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--tone);
+  margin-right:8px;vertical-align:2px;opacity:.9}
+
+.tbl-wrap{border-radius:11px;margin:12px 0 6px}
+th{background:#F6F7F9;border-bottom:1px solid var(--line-2)}
+tbody tr:nth-child(even){background:#FBFBFC}
+tbody td:first-child{font-weight:500;color:var(--ink)}
+.note{background:var(--soft);border-color:var(--softline);color:var(--tone-ink)}
+
+.toc a.on{background:var(--t,var(--brand));border-color:var(--t,var(--brand))}
+.mini-nav{position:fixed;right:16px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:11px;z-index:50}
+.mini-nav a{display:flex;align-items:center;justify-content:flex-end;text-decoration:none}
+.mini-nav i{width:7px;height:7px;border-radius:50%;background:#D2D6DE;transition:.18s;flex:none}
+.mini-nav .lb{font-size:11.5px;color:var(--ink-2);background:#fff;border:1px solid var(--line);border-radius:6px;
+  padding:2px 8px;margin-right:8px;opacity:0;transform:translateX(4px);transition:.18s;white-space:nowrap;pointer-events:none}
+.mini-nav a:hover .lb{opacity:1;transform:none}
+.mini-nav a.on i{background:var(--tone);box-shadow:0 0 0 3px var(--soft)}
+.bd-go{margin-left:auto;flex:none;align-self:center;font-size:10.5px;font-weight:600;color:var(--brand);
+  background:var(--brand-soft);border:1px solid var(--brand-line);border-radius:5px;padding:0 5px;line-height:16px;text-decoration:none}
+.bd-go:hover{background:var(--brand);color:#fff;text-decoration:none}
+@media (max-width:1339px){.mini-nav{display:none}}
+@media print{.mini-nav{display:none}}
 </style>
 </head>
 <body data-page-node-id="wYtSR1ohSJyvcBBIGChLAZ">
@@ -1007,6 +1050,81 @@
   window.addEventListener('load', spy);
   setTimeout(spy, 300);
   setTimeout(spy, 900);
+})();
+</script>
+
+<script>
+(function(){
+  var secs = [].slice.call(document.querySelectorAll('body section[id]'));
+  secs.forEach(function(s){
+    var t = getComputedStyle(s).getPropertyValue('--tone').trim() || '#8A9199';
+    s.setAttribute('data-tone', t);
+  });
+
+  [].slice.call(document.querySelectorAll('.sec h3')).forEach(function(h){
+    var n = h.firstChild;
+    if(!n || n.nodeType !== 3) return;
+    var m = n.nodeValue.match(/^\s*((?:\d+(?:\.\d+)?)|(?:[AP]\d+))(\s*[·　]?\s*)/);
+    if(!m) return;
+    var pill = document.createElement('span');
+    pill.className = 'h3n';
+    pill.textContent = m[1];
+    n.nodeValue = n.nodeValue.slice(m[0].length);
+    h.insertBefore(pill, h.firstChild);
+  });
+
+  var MAP = [['技能广场','app','§5'],['添加技能浮窗','app','§5'],['技能详情','app','§5'],
+             ['上限与状态','rule','§8'],['会话过程结构','matrix','§7'],['Agent 调用流程','flow','§4.4'],
+             ['双端','app','§5-6']];
+  [].slice.call(document.querySelectorAll('.board > .bd:first-child .bd-u li')).forEach(function(li){
+    var txt = li.textContent || '';
+    for(var i = 0; i < MAP.length; i++){
+      if(txt.indexOf(MAP[i][0]) > -1){
+        var a = document.createElement('a');
+        a.className = 'bd-go';
+        a.href = '#' + MAP[i][1];
+        a.textContent = MAP[i][2];
+        li.appendChild(a);
+        return;
+      }
+    }
+  });
+
+  [].slice.call(document.querySelectorAll('.toc a')).forEach(function(a){
+    var s = document.getElementById((a.getAttribute('href') || '').slice(1));
+    if(s) a.style.setProperty('--t', s.getAttribute('data-tone'));
+  });
+
+  var nav = document.createElement('nav');
+  nav.className = 'mini-nav';
+  var items = [];
+  secs.forEach(function(s){
+    var h2 = s.querySelector('.sec-h h2');
+    if(!h2) return;
+    var a = document.createElement('a');
+    a.href = '#' + s.id;
+    a.style.setProperty('--tone', s.getAttribute('data-tone'));
+    a.style.setProperty('--soft', getComputedStyle(s).getPropertyValue('--soft').trim());
+    var lb = document.createElement('span');
+    lb.className = 'lb';
+    lb.textContent = h2.textContent.trim();
+    a.appendChild(lb);
+    a.appendChild(document.createElement('i'));
+    nav.appendChild(a);
+    items.push({a: a, s: s});
+  });
+  document.body.appendChild(nav);
+
+  function spy(){
+    var act = 0;
+    for(var i = 0; i < items.length; i++){
+      if(items[i].s.getBoundingClientRect().top - 150 <= 0) act = i;
+    }
+    items.forEach(function(it, i){ it.a.classList.toggle('on', i === act); });
+  }
+  window.addEventListener('scroll', spy, {passive: true});
+  window.addEventListener('resize', spy);
+  spy();
 })();
 </script>
 </body>
