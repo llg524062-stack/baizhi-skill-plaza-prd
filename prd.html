@@ -190,10 +190,11 @@
   <!-- 评审看板 -->
   <div class="board" data-page-node-id="Fqe6W0k5cCIo49PYIz0rIh">
     <div class="bd" data-page-node-id="sYA3ZKzvgprFgEbKKUWT1i">
-      <div class="bd-h" data-page-node-id="OK7FOryjLPZbs9bCW9nPkL"><span class="chip new" data-page-node-id="QlorYjCqLrGe9zgLYh2Kqw">必做</span> P0 交付项 <span class="bd-n" data-page-node-id="CT5fF0xPAGzO5oiUJkHExf">6</span></div>
+      <div class="bd-h" data-page-node-id="OK7FOryjLPZbs9bCW9nPkL"><span class="chip new" data-page-node-id="QlorYjCqLrGe9zgLYh2Kqw">必做</span> P0 交付项 <span class="bd-n" data-page-node-id="CT5fF0xPAGzO5oiUJkHExf">7</span></div>
       <ul class="bd-u" data-page-node-id="JEaTPptz9QPDVZp1l4QXMF">
         <li data-page-node-id="WVnaTOKtGzqV0mq2mGzfG6"><i data-page-node-id="fv2SPBcRR6DrulVo5Z0R94"></i><span data-page-node-id="wfigKaONDZAd6x3OlLTAdk"><b data-page-node-id="1stkMcFEeAciElK4ESsl2E">技能广场</b>（App 新建二级页）</span></li>
         <li data-page-node-id="tNbG2wdbGn4qjKd5r6d2sr"><i data-page-node-id="4A5hRJHGiFvp30gihTFd0d"></i><span data-page-node-id="dy5M1DBQOOaCZFQyIJxk1c"><b data-page-node-id="L7aeinc6Puo1rAORlFAybs">添加技能浮窗</b>（会话内，不跳页）</span></li>
+        <li><i></i><span><b>Agent 调用流程</b>（资产漏斗 + 按需加载，见 4.4）</span></li>
         <li data-page-node-id="kOzGAhJdksyrUjVEMvlyoX"><i data-page-node-id="jGuwfwOrXNrt0qXkk6Yqdd"></i><span data-page-node-id="HUnHfmZKUEThzr0xyDn98m"><b data-page-node-id="neMkO0YKQ9zzbTLnvyX4tw">技能详情</b>（两种状态两套操作）</span></li>
         <li data-page-node-id="gB8uo4VuS2StDROUfxo1yV"><i data-page-node-id="S5U8xceQ5KGLklluuajSvQ"></i><span data-page-node-id="T7tRp9LScdw4G31FQhkp47"><b data-page-node-id="D1d0MX5cdrMuarl1mylKsl">双端</b>小智技能入口（关联闪念之后）+ 7 入口顺序统一</span></li>
         <li data-page-node-id="5QP8cACeYJ6Dt6NMNZdhzb"><i data-page-node-id="4bOjw6zuzvMtoBoWJbjl3U"></i><span data-page-node-id="bXF2VpgiU6N1yfik3FWCZ0"><b data-page-node-id="sscQKQfKG52hHZYxfKFf75">上限与状态双端同步</b>（15 / 3）</span></li>
@@ -336,7 +337,7 @@
   <!-- 四、核心链路 -->
   <section id="flow" data-page-node-id="JG4JCuulU5W0QBFh5TQdFX">
     <div class="sec" data-page-node-id="Wq6kbgIdVvGu50dm4Fj4MW">
-      <div class="sec-h" data-page-node-id="ZTW34ghhrjHJs0qrABwNld"><span class="sec-no" data-page-node-id="67TSCPe30nvd8oBfL1qRRp">4</span><h2 data-page-node-id="uVkIY8UR09RQyEfU01UlDy">核心链路</h2><span class="chip new" data-page-node-id="bS4Jkn3R0tKJm7Y4bJSBES">1 条主链路 + 1 张状态机 + 1 条异常链</span></div>
+      <div class="sec-h" data-page-node-id="ZTW34ghhrjHJs0qrABwNld"><span class="sec-no" data-page-node-id="67TSCPe30nvd8oBfL1qRRp">4</span><h2 data-page-node-id="uVkIY8UR09RQyEfU01UlDy">核心链路</h2><span class="chip new" data-page-node-id="bS4Jkn3R0tKJm7Y4bJSBES">主链路 + 状态机 + 异常链 + Agent 调用历程</span></div>
       <p class="sec-sub" data-page-node-id="MqNoXLp9RQQnZCkaTUc6kB">链路按「用户在做什么」画，不按「页面怎么跳」画；每个菱形都是评审时要确认的规则点。</p>
 
       <h3 data-page-node-id="BQCrhd1IqFwRxUAkzSowf1">4.1 链路 L1：发现 → 添加 → 启用 → 发起任务（双端主链路，App 视角）</h3>
@@ -458,6 +459,132 @@
           </tbody>
         </table>
       </div>
+      <h3 data-page-node-id="L4HEAD001">4.4 链路 L4：技能在 Agent 里的调用历程（资产漏斗 → 运行时加载器）</h3>
+      <p data-page-node-id="L4P000001">技能不是用户上传的能力包，而是<b data-page-node-id="L4B000001">平台维护的能力资产</b>。用户只决定两件事：要不要把它放进自己的池子（添加 / 卸载），允不允许它在会话里被调用（启用 / 取消启用）；至于「这一次到底加载哪些技能、给多少内容」，由小智在会话里判断 —— 这就是「按需加载」的全部含义。</p>
+      <div class="fig" data-page-node-id="L4FIG0001">
+        <svg viewBox="0 0 1040 492" role="img" aria-label="技能从添加到调用的完整历程：阶段一资产准备收窄，阶段二运行时按需加载">
+          <defs>
+            <marker id="ar4" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+              <path d="M0,1 L7,4 L0,7 z" fill="#B9C0CC"/>
+            </marker>
+          </defs>
+          <rect x="8" y="6" width="1024" height="190" rx="14" fill="#FAFBFC" stroke="#ECEEF3"/>
+          <text x="32" y="32" font-size="13" font-weight="600" fill="#4E5969">阶段 ①　资产准备｜用户在界面上完成</text>
+          <text x="1012" y="32" font-size="11.5" fill="#8A9199" text-anchor="end">逐层收窄：全量 → ≤15 → ≤3</text>
+
+          <rect x="34" y="52" width="284" height="108" rx="11" fill="#FFFFFF" stroke="#E3E6EC"/>
+          <rect x="246" y="64" width="52" height="20" rx="6" fill="#F5F6F8" stroke="#ECEEF3"/>
+          <text x="272" y="78" font-size="11" fill="#4E5969" text-anchor="middle">全量</text>
+          <text x="52" y="96" font-size="15" font-weight="600" fill="#1D2129">平台技能库</text>
+          <text x="52" y="120" font-size="11.5" fill="#4E5969">公开技能，一处维护</text>
+          <text x="52" y="140" font-size="11.5" fill="#8A9199">上下架即时同步双端</text>
+
+          <text x="348" y="92" font-size="11" fill="#8A9199" text-anchor="middle">添加</text>
+          <line x1="322" y1="112" x2="372" y2="112" stroke="#B9C0CC" stroke-width="1.2" marker-end="url(#ar4)"/>
+
+          <rect x="378" y="52" width="284" height="108" rx="11" fill="#FFFFFF" stroke="#E3E6EC"/>
+          <rect x="590" y="64" width="52" height="20" rx="6" fill="#F5F6F8" stroke="#ECEEF3"/>
+          <text x="616" y="78" font-size="11" fill="#4E5969" text-anchor="middle">≤ 15</text>
+          <text x="396" y="96" font-size="15" font-weight="600" fill="#1D2129">用户技能</text>
+          <text x="396" y="120" font-size="11.5" fill="#4E5969">添加即入「我的技能」</text>
+          <text x="396" y="140" font-size="11.5" fill="#8A9199">卸载后可再次添加</text>
+
+          <text x="692" y="92" font-size="11" fill="#8A9199" text-anchor="middle">启用</text>
+          <line x1="666" y1="112" x2="716" y2="112" stroke="#B9C0CC" stroke-width="1.2" marker-end="url(#ar4)"/>
+
+          <rect x="722" y="52" width="284" height="108" rx="11" fill="#EEF3FF" stroke="#C9D9FB"/>
+          <rect x="934" y="64" width="52" height="20" rx="6" fill="#FFFFFF" stroke="#D9E4FF"/>
+          <text x="960" y="78" font-size="11" fill="#165DFF" text-anchor="middle">≤ 3</text>
+          <text x="740" y="96" font-size="15" font-weight="600" fill="#1A4FD6">启用池</text>
+          <text x="740" y="120" font-size="11.5" fill="#2A3F6B">唯一注入白名单</text>
+          <text x="740" y="140" font-size="11.5" fill="#6B7EA8">只有这里能被模型调用</text>
+
+          <text x="32" y="180" font-size="11.5" fill="#8A9199">「添加」决定你拥有什么，「启用」决定它能不能被调用 —— 这两步都只发生在界面上，与本次对话无关。</text>
+
+          <line x1="520" y1="200" x2="520" y2="232" stroke="#B9C0CC" stroke-width="1.2" marker-end="url(#ar4)"/>
+          <text x="538" y="219" font-size="11.5" fill="#4E5969">会话内勾选（默认全选已启用项）→ 成为本次的候选集</text>
+
+          <rect x="8" y="240" width="1024" height="238" rx="14" fill="#FAFBFC" stroke="#ECEEF3"/>
+          <text x="32" y="266" font-size="13" font-weight="600" fill="#4E5969">阶段 ②　运行时加载器｜小智 Agent 内部</text>
+          <text x="1012" y="266" font-size="11.5" fill="#8A9199" text-anchor="end">按需：元数据常驻 → 正文命中才注入</text>
+
+          <rect x="34" y="288" width="172" height="108" rx="11" fill="#FFFFFF" stroke="#E3E6EC"/>
+          <circle cx="60" cy="310" r="10" fill="#EEF3FF" stroke="#D9E4FF"/>
+          <text x="60" y="314" font-size="11" font-weight="600" fill="#165DFF" text-anchor="middle">1</text>
+          <text x="78" y="314" font-size="13.5" font-weight="600" fill="#1D2129">用户 query</text>
+          <text x="50" y="344" font-size="11.5" fill="#4E5969">自然语言 + 上下文</text>
+          <text x="50" y="364" font-size="11.5" fill="#8A9199">带本次勾选结果</text>
+
+          <line x1="208" y1="342" x2="230" y2="342" stroke="#B9C0CC" stroke-width="1.2" marker-end="url(#ar4)"/>
+
+          <rect x="234" y="288" width="172" height="108" rx="11" fill="#FFFFFF" stroke="#E3E6EC"/>
+          <circle cx="260" cy="310" r="10" fill="#EEF3FF" stroke="#D9E4FF"/>
+          <text x="260" y="314" font-size="11" font-weight="600" fill="#165DFF" text-anchor="middle">2</text>
+          <text x="278" y="314" font-size="13.5" font-weight="600" fill="#1D2129">意图识别</text>
+          <text x="250" y="344" font-size="11.5" fill="#4E5969">要不要用技能</text>
+          <text x="250" y="364" font-size="11.5" fill="#8A9199">再判能力类别</text>
+
+          <line x1="408" y1="342" x2="430" y2="342" stroke="#B9C0CC" stroke-width="1.2" marker-end="url(#ar4)"/>
+
+          <rect x="434" y="288" width="172" height="108" rx="11" fill="#FFFFFF" stroke="#E3E6EC"/>
+          <circle cx="460" cy="310" r="10" fill="#EEF3FF" stroke="#D9E4FF"/>
+          <text x="460" y="314" font-size="11" font-weight="600" fill="#165DFF" text-anchor="middle">3</text>
+          <text x="478" y="314" font-size="13.5" font-weight="600" fill="#1D2129">技能路由</text>
+          <text x="450" y="344" font-size="11.5" fill="#4E5969">候选 ≤3 筛命中</text>
+          <text x="450" y="364" font-size="11.5" fill="#8A9199">0 命中回落通用</text>
+
+          <line x1="608" y1="342" x2="630" y2="342" stroke="#B9C0CC" stroke-width="1.2" marker-end="url(#ar4)"/>
+
+          <rect x="634" y="288" width="172" height="108" rx="11" fill="#EEF3FF" stroke="#C9D9FB"/>
+          <circle cx="660" cy="310" r="10" fill="#FFFFFF" stroke="#C9D9FB"/>
+          <text x="660" y="314" font-size="11" font-weight="600" fill="#165DFF" text-anchor="middle">4</text>
+          <text x="678" y="314" font-size="13.5" font-weight="600" fill="#1A4FD6">渐进加载</text>
+          <text x="650" y="344" font-size="11.5" fill="#2A3F6B">元数据常驻</text>
+          <text x="650" y="364" font-size="11.5" fill="#6B7EA8">正文命中才注入</text>
+
+          <line x1="808" y1="342" x2="830" y2="342" stroke="#B9C0CC" stroke-width="1.2" marker-end="url(#ar4)"/>
+
+          <rect x="834" y="288" width="172" height="108" rx="11" fill="#FFFFFF" stroke="#E3E6EC"/>
+          <circle cx="860" cy="310" r="10" fill="#EEF3FF" stroke="#D9E4FF"/>
+          <text x="860" y="314" font-size="11" font-weight="600" fill="#165DFF" text-anchor="middle">5</text>
+          <text x="878" y="314" font-size="13.5" font-weight="600" fill="#1D2129">执行与输出</text>
+          <text x="850" y="344" font-size="11.5" fill="#4E5969">工具调用 + 编排</text>
+          <text x="850" y="364" font-size="11.5" fill="#8A9199">六段回复</text>
+
+          <rect x="32" y="416" width="976" height="46" rx="10" fill="#EEF3FF" stroke="#D9E4FF"/>
+          <text x="48" y="444" font-size="11.5" fill="#2A3F6B"><tspan font-weight="600">上下文护栏：</tspan>3 个技能的元数据常驻（约 0.3k）+ 命中的技能正文最多 2 份（≤4k）≈ 5k；超出预算只保留主技能，不堆叠。</text>
+        </svg>
+        <div class="fig-cap"><b>图 4-4</b> · 从「平台技能库」到最终 output 的完整历程：上半段把资产收窄，下半段按需加载</div>
+      </div>
+
+      <h4 data-page-node-id="L4H400001">为什么要在会话里再判一次</h4>
+      <div class="grid2" data-page-node-id="L4G200001">
+        <div class="mini" data-page-node-id="L4M000001">
+          <h5 data-page-node-id="L4M000002">启用 ≠ 加载</h5>
+          <p data-page-node-id="L4M000003">启用只是「允许被调用」。如果 3 个技能每次都把全文塞给模型，每轮对话都要固定付出几千字上下文，规则之间还会互相干扰。所以真正的加载发生在会话里：先只带技能的「名字 + 一句话能力」，命中之后才注入正文。</p>
+        </div>
+        <div class="mini" data-page-node-id="L4M000004">
+          <h5 data-page-node-id="L4M000005">没命中就如实说没命中</h5>
+          <p data-page-node-id="L4M000006">判定这次用不上技能时，回复里不出现技能段，直接用通用能力回答。最怕的是「显示已加载 0 个技能」——用户会以为技能生效了，实际什么都没发生。</p>
+        </div>
+      </div>
+
+      <h4 data-page-node-id="L4H400002">会话里看到的现象，分别代表什么</h4>
+      <div class="tbl-wrap compact" data-page-node-id="L4T000001">
+        <table data-page-node-id="L4T000002">
+          <thead data-page-node-id="L4T000003"><tr data-page-node-id="L4T000004"><th style="width:250px" data-page-node-id="L4T000005">用户看到</th><th data-page-node-id="L4T000006">背后的含义</th></tr></thead>
+          <tbody data-page-node-id="L4T000007">
+            <tr data-page-node-id="L4T000008"><td data-page-node-id="L4T000009"><b data-page-node-id="L4T000010">已加载 2 个技能</b></td><td data-page-node-id="L4T000011">本次请求命中了 2 个，正文已经注入，输出按主技能的结构组织</td></tr>
+            <tr data-page-node-id="L4T000012"><td data-page-node-id="L4T000013"><b data-page-node-id="L4T000014">已启用 2 个技能，本次未命中</b></td><td data-page-node-id="L4T000015">技能在池子里，但这句话用不上；不加载、不干扰，换句话问就能命中</td></tr>
+            <tr data-page-node-id="L4T000016"><td data-page-node-id="L4T000017"><b data-page-node-id="L4T000018">「合同风险审查」加载失败，已跳过</b></td><td data-page-node-id="L4T000019">命中但没取到内容，其余技能照常工作，正文照常输出</td></tr>
+            <tr data-page-node-id="L4T000020"><td data-page-node-id="L4T000021">完全没有技能段</td><td data-page-node-id="L4T000022">这次判定不需要技能，或者启用池是空的</td></tr>
+            <tr data-page-node-id="L4T000023"><td data-page-node-id="L4T000024"><b data-page-node-id="L4T000025">已调用 3 个工具</b></td><td data-page-node-id="L4T000026">技能执行时用到了连接器；工具没授权会跳过该步，不影响其他结论</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note ghost" data-page-node-id="L4N000001"><b data-page-node-id="L4N000002">本期界线：</b>这一节只定义能力怎么流转、用户会看到什么。<b data-page-node-id="L4N000003">模型选型、技能编排语法、上下文预算的具体算法不在本期范围</b>，由研发方案单独说明；本节给出的「元数据常驻 + 正文按需」是双方确认的对齐口径。</div>
+
     </div>
   </section>
 
