@@ -1995,6 +1995,30 @@ body{margin:0!important;overflow:hidden!important;background:#EDF0F5!important;
   var _wbToggleSkill=window.wbToggleSkill;
   window.wbToggleSkill=function(id){ if(_wbToggleSkill) _wbToggleSkill(id); renderCtx(); };
 
+  /* 技能浮层：紧贴「技能」入口上方弹出（覆盖下方内容） */
+  function placeSkillPop(){
+    var pop=el('wbSkillPop'), btn=el('wbToolSkill');
+    if(!pop||!btn) return;
+    var par=pop.offsetParent; if(!par) return;
+    var pr=par.getBoundingClientRect(), br=btn.getBoundingClientRect();
+    var pw=pop.offsetWidth||296; if(!pw) return;
+    var left=br.left-pr.left+br.width/2-pw/2;
+    left=Math.max(8, Math.min(left, pr.width-pw-8));
+    pop.style.left=left+'px';
+    pop.style.transform='none';
+    pop.style.bottom=(pr.bottom-br.top+8)+'px';
+  }
+  var _wbToggleSkills=window.wbToggleSkills;
+  window.wbToggleSkills=function(v){
+    if(_wbToggleSkills) _wbToggleSkills(v);
+    var pop=el('wbSkillPop');
+    if(pop && pop.classList.contains('show')){ placeSkillPop(); setTimeout(placeSkillPop,60); }
+  };
+  window.addEventListener('resize', function(){
+    var pop=el('wbSkillPop');
+    if(pop && pop.classList.contains('show')) placeSkillPop();
+  });
+
   /* 入口行：更多箭头（翻页 + 方向随位置翻转） */
   window.wbToolsPage=function(){
     var t=document.querySelector('.wb-cbot .wb-tools'); if(!t) return;
@@ -2354,7 +2378,7 @@ body{margin:0!important;overflow:hidden!important;background:#EDF0F5!important;
            '所有功能入口统一收到<b>输入框底部一行</b>，与右侧发送键同一水平位置（原来悬浮在输入框上方）；点击切换<b>选中态</b>（浅蓝底 + 蓝字）。',
            '「知识库」占用原「深度思考」的位置（第一位），「常用语」整项移除；保留「搜索 / 关联会议 / 关联闪念」，交互与原来一致。',
            '面板宽 384px，6 个「图标 + 文字」入口一行放不下（约 420px > 299px 可用宽），因此保持文字不变、<b>超出部分横向滚动</b>查看：支持鼠标滚轮 / 按住拖拽 / 触控板左右滑，两端渐隐提示「还有更多入口」；入口不换行、不收起。',
-           '「技能」为本次新增主入口，位置调整为<b>「关联闪念」之后</b>，蓝色描边强调；点击上弹技能浮层（宽 296px，居中锚定输入区上方）。'
+           '「技能」为本次新增主入口，位置调整为<b>「关联闪念」之后</b>，蓝色描边强调；点击后在<b>「技能」入口正上方</b>弹出技能浮层（宽 296px，横向对齐入口、纵向紧贴入口上沿），允许遮盖下方输入区内容，但<b>不遮挡上方会话消息区</b>。'
            ,'点击技能卡片打开的详情弹窗宽度 <b>430px</b>，以<b>整个首页可视区</b>为基准水平+垂直居中，半透明遮罩铺满全页（含左侧导航），点击遮罩空白处关闭。'
          ]},
          {h:'技能列表（空态）',items:[
