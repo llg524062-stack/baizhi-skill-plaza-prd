@@ -43,7 +43,6 @@
 .wb-q-chip .ic{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border-radius:3.5px;background:#fff;color:inherit;flex:none;}
 .wb-q-chip.sk{background:#F3F6FF;border-color:#E2E8FF;color:#1A4FD6;}
 .wb-q-chip.cn{background:#EFFAF4;border-color:#DCF2E6;color:#00875A;}
-.wb-q-chip.kb{background:#F5F6F8;border-color:#EBEDF0;color:#4E5969;}
 .wb-q-sep{display:none;}
 
 .wb-files{position:relative;padding-top:26px;margin-bottom:8px;width:100%;display:flex;flex-direction:column;align-items:flex-end;}
@@ -224,12 +223,14 @@
       <div class="wb-sp-foot" onclick="wbGotoPlaza()"><span>前往技能广场，查看和管理更多技能</span><span class="wb-sp-arrow">›</span></div>
     </div>
     <div class="wb-tools-wrap"><div class="wb-tools">
-      <button class="wb-tool" onclick="wbChip(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 5.6A2.6 2.6 0 0 1 6.6 3H19v14.6H6.6A2.6 2.6 0 0 0 4 20.2z"/><path d="M4 20.2A2.6 2.6 0 0 1 6.6 17.6H19"/><path d="M8 7.4h7"/></svg>知识库</button>
+      <button class="wb-tool" onclick="wbChip(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.2V16h6v-.3c0-.8.4-1.6 1-2.2A6 6 0 0 0 12 3z"/></svg>深度思考</button>
       <button class="wb-tool" onclick="wbChip(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg>搜索</button>
       <button class="wb-tool" onclick="wbChip(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v3.5M16 3v3.5"/></svg>关联会议</button>
       <button class="wb-tool" onclick="wbChip(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l2 5.5 5.5 2-5.5 2L12 18l-2-5.5L4.5 10.5 10 8.5z"/></svg>关联闪念</button>
-      <div class="wb-tools-g2"><button class="wb-tool skill" id="wbToolSkill" onclick="wbToggleSkills()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>技能</button>
-      <button class="wb-tool" onclick="wbChip(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10.5 13.5a4.5 4.5 0 0 0 6.4 0l2.4-2.4a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2"/><path d="M13.5 10.5a4.5 4.5 0 0 0-6.4 0l-2.4 2.4a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2"/></svg>连接器</button></div></div></div>
+      <button class="wb-tool skill" id="wbToolSkill" onclick="wbToggleSkills()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>技能</button>
+      <button class="wb-tool" onclick="wbChip(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10.5 13.5a4.5 4.5 0 0 0 6.4 0l2.4-2.4a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2"/><path d="M13.5 10.5a4.5 4.5 0 0 0-6.4 0l-2.4 2.4a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2"/></svg>连接器</button>
+      <button class="wb-tool" onclick="wbChip(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 7h10v10H7z"/><path d="M4 10V4h6M20 14v6h-6"/></svg>常用语</button>
+    </div></div>
     <div class="wb-pend" id="wbPend"></div>
     <div class="wb-input">
       <button class="wb-att" onclick="wbAttach()" title="添加文件"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 11.5l-7.6 7.6a4.2 4.2 0 0 1-6-6l7.9-7.9a2.8 2.8 0 1 1 4 4l-7.9 7.9a1.4 1.4 0 0 1-2-2l7.2-7.2"/></svg></button>
@@ -1519,13 +1520,11 @@ body{margin:0!important;overflow:hidden!important;background:#EDF0F5!important;
 .wb-tools-wrap::after{right:0;background:linear-gradient(270deg,#fff 30%,rgba(255,255,255,0));}
 .wb-tools-wrap.can-l::before{opacity:1;}
 .wb-tools-wrap.can-r::after{opacity:1;}
-.wb-tools{display:flex;align-items:center;flex-wrap:wrap;gap:4px;row-gap:6px;padding-bottom:8px;overflow:visible;cursor:default;}
-.wb-tools-wrap::before,.wb-tools-wrap::after{display:none;}
+.wb-tools{display:flex;align-items:center;flex-wrap:nowrap;gap:4px;padding-bottom:8px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;cursor:grab;}
 .wb-tools::-webkit-scrollbar{display:none;}
 .wb-tools.dragging{cursor:grabbing;}
 .wb-tools::-webkit-scrollbar{display:none;}
 .wb-tool{display:inline-flex;align-items:center;gap:3px;height:26px;padding:0 6px;border-radius:13px;border:1px solid #EBEDF0;background:#fff;font-size:12px;color:#4E5969;cursor:pointer;white-space:nowrap;flex-shrink:0;}
-.wb-tools-g2{display:flex;align-items:center;gap:4px;}
 .wb-tool:hover{border-color:#C9D8FF;color:#165DFF;}
 .wb-tool.on{background:#EAF1FF;border-color:#C9D8FF;color:#165DFF;font-weight:600;}
 .wb-tool.skill{color:#165DFF;border-color:#C9D8FF;background:#F5F9FF;font-weight:600;}
@@ -1852,8 +1851,7 @@ body{margin:0!important;overflow:hidden!important;background:#EDF0F5!important;
       +'<div class="wb-step-b">'+body+'</div></div>';
   }
 
-  /* ---------- 本次上下文：附件 / 知识库 / 技能 / 连接器 ---------- */
-  var IC_KB='<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 5.6A2.6 2.6 0 0 1 6.6 3H19v14.6H6.6A2.6 2.6 0 0 0 4 20.2z"/><path d="M4 20.2A2.6 2.6 0 0 1 6.6 17.6H19"/></svg>';
+  /* ---------- 本次上下文：附件 / 技能 / 连接器 ---------- */
   var IC_SK='<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="7" height="7" rx="1.4"/><rect x="13" y="4" width="7" height="7" rx="1.4"/><rect x="4" y="13" width="7" height="7" rx="1.4"/><rect x="13" y="13" width="7" height="7" rx="1.4"/></svg>';
   var IC_CN='<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.5 13.5a4.5 4.5 0 0 0 6.4 0l2.4-2.4a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2"/><path d="M13.5 10.5a4.5 4.5 0 0 0-6.4 0l-2.4 2.4a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2"/></svg>';
   var IC_CHEV2='<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5l6 6 6-6"/></svg>';
@@ -1894,7 +1892,6 @@ body{margin:0!important;overflow:hidden!important;background:#EDF0F5!important;
   }
   function ctxChipsHTML(){
     var out=[];
-    if(toolOn('知识库')) out.push('<span class="wb-q-chip kb"><span class="ic">'+IC_KB+'</span>知识库</span>');
     SKILLS.filter(function(s){return s.added&&s.enabled;}).slice(0,2).forEach(function(s){
       out.push('<span class="wb-q-chip sk"><span class="ic">'+IC_SK+'</span>'+esc(s.name)+'</span>');
     });
@@ -2184,11 +2181,11 @@ body{margin:0!important;overflow:hidden!important;background:#EDF0F5!important;
     {k:'skills',n:'小智会话 · 技能入口',tg:'新增',tc:'new',
      run:function(){ closeAll(); wbSetPage('home'); wbTogglePanel(true); if(window.wbToggleSkills) wbToggleSkills(true); },
      prd:{title:'小智会话 · 技能入口',
-       sub:'面板底部功能入口：知识库 / 搜索 / 关联会议 / 关联闪念 / 技能 / 连接器（已去掉「深度思考」与「常用语」）；发送后消息内回显本次上下文（文件 + 技能 / 连接器 / 知识库标签）。',
+       sub:'面板底部功能入口保持原样：深度思考 / 搜索 / 关联会议 / 关联闪念 / 技能 / 连接器 / 常用语；本次仅调整「选中工具与文件后，会话窗口内的上下文回显」。',
        chips:[['新增','new'],['空态引导','plain'],['上限 3','todo']],
        secs:[
          {h:'会话内上下文回显（本次新增）',items:[
-           '用户勾选「技能 / 连接器 / 知识库」并附带文件后发送任务，消息内按「<b>知识库 → 技能 → 连接器</b>」顺序回显标签：知识库（灰）、技能（蓝）、连接器（绿），置于自然语言指令上方，随气泡一起右对齐。',
+           '用户选中「技能 / 连接器」并附带文件后发送任务，消息内按「<b>技能 → 连接器</b>」顺序回显标签：技能（蓝）、连接器（绿），置于自然语言指令上方，随气泡一起右对齐。',
            '文件以<b>独立卡片</b>展示在消息气泡上方：≤ 2 个直接平铺；<b>≥ 3 个默认折叠</b>为层叠卡片（右上角数量徽标「N ⌄」），点击徽标展开完整文件列表，再次点击收起（图标旋转 180°）。',
            '文件类型用色块 + 首字母区分：PPT 橙、Word 蓝、Excel 绿、PDF 红、其他文本灰；文件名超长省略号截断。',
            '发送前，已选文件先在输入区上方以「文件 Chip」呈现，支持单个移除（✕）；发送后 Chip 清空，转为消息内的文件卡片。'
