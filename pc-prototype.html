@@ -63,24 +63,28 @@
 /* 底部一行：功能入口 + 发送 */
 .wb-cbot{display:flex;align-items:center;gap:8px;margin-top:8px;}
 .wb-cbot .wb-tools-wrap{flex:1;min-width:0;position:relative;}
-.wb-cbot .wb-tools{display:flex;align-items:center;flex-wrap:nowrap;gap:4px;padding:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;cursor:grab;}
+.wb-cbot .wb-tools{display:flex;align-items:center;flex-wrap:nowrap;gap:4px;padding:0 24px 0 0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;cursor:grab;}
 .wb-cbot .wb-tools::-webkit-scrollbar{display:none;}
-.wb-cbot .wb-tools-wrap::before,.wb-cbot .wb-tools-wrap::after{content:"";position:absolute;top:0;bottom:0;width:14px;pointer-events:none;z-index:2;opacity:0;transition:opacity .2s;}
+.wb-cbot .wb-tools-wrap::before,.wb-cbot .wb-tools-wrap::after{content:"";position:absolute;top:0;bottom:0;width:22px;pointer-events:none;z-index:2;opacity:0;transition:opacity .2s;}
 .wb-cbot .wb-tools-wrap::before{left:0;background:linear-gradient(90deg,#fff 30%,rgba(255,255,255,0));}
 .wb-cbot .wb-tools-wrap::after{right:0;background:linear-gradient(270deg,#fff 30%,rgba(255,255,255,0));}
 .wb-cbot .wb-tools-wrap.can-l::before{opacity:1;}
 .wb-cbot .wb-tools-wrap.can-r::after{opacity:1;}
 .wb-cbot .wb-tool{height:24px;padding:0 7px;font-size:11.5px;gap:4px;border-radius:12px;}
-.wb-cbot .wb-tool.ico{width:26px;height:24px;padding:0;justify-content:center;}
+
 .wb-cbot .wb-tool svg{width:12px;height:12px;}
 .wb-cbot .wb-send{margin-left:auto;}
+.wb-tmore{position:absolute;right:-3px;top:50%;transform:translateY(-50%);width:20px;height:20px;padding:0;border-radius:50%;border:1px solid #E5E6EB;background:#fff;color:#4E5969;display:none;align-items:center;justify-content:center;cursor:pointer;z-index:3;box-shadow:0 1px 3px rgba(29,33,41,.10);}
+.wb-tmore:hover{color:#165DFF;border-color:#C9D8FF;background:#F5F9FF;}
+.wb-tmore svg{transition:transform .2s;}
 
 /* 会话内（发送后）的标签：白底描边，适配灰气泡 */
-.wb-q-chips{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:0 0 7px;}
-.wb-q-chip{display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 8px;border-radius:7px;background:#fff;border:1px solid #E9EBEF;color:#1D2129;font-size:11.5px;font-weight:400;line-height:1;}
-.wb-q-chip .ic{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;flex:none;color:#4E5969;}
+.wb-q-flow{display:block;line-height:1.75;font-size:13px;color:#1D2129;word-break:break-word;}
+.wb-q-chip{display:inline-flex;align-items:center;gap:4px;height:23px;padding:0 7px;margin:0 5px 3px 0;border-radius:6px;background:#fff;border:1px solid #D8E3FF;color:#1D2129;font-size:11.5px;font-weight:400;line-height:1;vertical-align:middle;position:relative;top:-1px;}
+.wb-q-chip .ic{display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;flex:none;color:#4E5969;}
 .wb-q-chip.cn .ic{color:#3370FF;}
 .wb-q-chip.sk{background:#fff;}
+.wb-q-txt{display:inline;}
 .wb-q-sep{display:none;}
 
 /* 会话内文件卡片 */
@@ -271,12 +275,12 @@
       <div class="wb-cbot">
         <div class="wb-tools-wrap"><div class="wb-tools">
           <button class="wb-tool" onclick="wbChip(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 5.6A2.6 2.6 0 0 1 6.6 3H19v14.6H6.6A2.6 2.6 0 0 0 4 20.2z"/><path d="M4 20.2A2.6 2.6 0 0 1 6.6 17.6H19"/><path d="M8 7.4h7"/></svg>知识库</button>
-          <button class="wb-tool ico" onclick="wbChip(this)" title="搜索"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg></button>
-          <button class="wb-tool ico" onclick="wbChip(this)" title="关联会议"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v3.5M16 3v3.5"/></svg></button>
-          <button class="wb-tool ico" onclick="wbChip(this)" title="关联闪念"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l2 5.5 5.5 2-5.5 2L12 18l-2-5.5L4.5 10.5 10 8.5z"/></svg></button>
+          <button class="wb-tool" onclick="wbChip(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg>搜索</button>
+          <button class="wb-tool" onclick="wbChip(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v3.5M16 3v3.5"/></svg>关联会议</button>
+          <button class="wb-tool" onclick="wbChip(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l2 5.5 5.5 2-5.5 2L12 18l-2-5.5L4.5 10.5 10 8.5z"/></svg>关联闪念</button>
           <button class="wb-tool skill" id="wbToolSkill" onclick="wbToggleSkills()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>技能</button>
           <button class="wb-tool" onclick="wbChip(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10.5 13.5a4.5 4.5 0 0 0 6.4 0l2.4-2.4a4.5 4.5 0 0 0-6.4-6.4l-1.2 1.2"/><path d="M13.5 10.5a4.5 4.5 0 0 0-6.4 0l-2.4 2.4a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2"/></svg>连接器</button>
-        </div></div>
+        <button class="wb-tmore" id="wbTMore" onclick="wbToolsPage()" title="查看更多入口" aria-label="查看更多入口"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
         <button class="wb-send" onclick="wbSend()" title="发送"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
       </div>
     </div>
@@ -1586,7 +1590,7 @@ body{margin:0!important;overflow:hidden!important;background:#EDF0F5!important;
 .wb-m-av{width:24px;height:24px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;background:linear-gradient(135deg,#4B7BFF,#165DFF);}
 .wb-m-av.me{background:#E5E6EB;color:#4E5969;}
 .wb-m-b{max-width:100%;font-size:13px;line-height:1.75;color:#1D2129;white-space:pre-wrap;}
-.wb-m-me .wb-m-b{background:#F2F3F5;border-radius:10px;padding:8px 12px;max-width:78%;}
+.wb-m-me .wb-m-b{background:#EBF2FF;border-radius:10px;padding:9px 12px;max-width:82%;color:#1D2129;}
 .wb-block{background:#FAFBFC;border:1px solid #F0F1F4;border-radius:14px;padding:8px;margin-top:2px;}
 .wb-steps{display:flex;flex-direction:column;gap:6px;}
 .wb-step{position:relative;background:#fff;border:1px solid #EDEFF3;border-radius:10px;box-shadow:0 1px 2px rgba(29,33,41,.03);}
@@ -1977,16 +1981,54 @@ body{margin:0!important;overflow:hidden!important;background:#EDF0F5!important;
   }
   function ctxChipsHTML(){
     var items=ctxItems(); if(!items.length) return '';
-    return '<div class="wb-q-chips">'+items.map(function(t){
+    return items.map(function(t){
       return '<span class="wb-q-chip '+t.k+'"><span class="ic">'+t.ic+'</span>'+esc(t.nm)+'</span>';
-    }).join('')+'</div>';
+    }).join('');
   }
 
   /* 入口切换 / 技能开关后同步标签 */
   var _wbChip=window.wbChip;
   window.wbChip=function(b){ if(_wbChip) _wbChip(b); renderCtx(); };
+  var _wbTogglePanel=window.wbTogglePanel;
+  window.wbTogglePanel=function(v){ if(_wbTogglePanel) _wbTogglePanel(v);
+    setTimeout(function(){ if(window.wbToolsUpd) window.wbToolsUpd(); if(window.wbToolsSync) window.wbToolsSync(); },80); };
   var _wbToggleSkill=window.wbToggleSkill;
   window.wbToggleSkill=function(id){ if(_wbToggleSkill) _wbToggleSkill(id); renderCtx(); };
+
+  /* 入口行：更多箭头（翻页 + 方向随位置翻转） */
+  window.wbToolsPage=function(){
+    var t=document.querySelector('.wb-cbot .wb-tools'); if(!t) return;
+    var max=t.scrollWidth-t.clientWidth; if(max<=0) return;
+    var atEnd=t.scrollLeft>=max-4;
+    var to=atEnd?0:Math.min(max,t.scrollLeft+150);
+    if(t.scrollTo){ t.scrollTo({left:to,behavior:'smooth'}); } else { t.scrollLeft=to; }
+  };
+  (function(){
+    var t=document.querySelector('.wb-cbot .wb-tools'), b=document.getElementById('wbTMore');
+    if(!t||!b) return;
+    var sync=function(){
+      var max=t.scrollWidth-t.clientWidth;
+      b.style.display = max>4 ? 'inline-flex' : 'none';
+      var atEnd = t.scrollLeft >= max-4;
+      var svg=b.querySelector('svg');
+      if(svg) svg.style.transform = atEnd ? 'rotate(180deg)' : 'none';
+      b.title = atEnd ? '回到最前' : '查看更多入口';
+    };
+    t.addEventListener('scroll', sync);
+    window.addEventListener('resize', sync);
+    window.wbToolsSync=sync;
+    sync();
+  })();
+
+  /* 入口行：滚轮 / 拖拽横向滚动 */
+  (function(){
+    var t=document.querySelector('.wb-cbot .wb-tools'); if(!t) return;
+    t.addEventListener('wheel', function(e){
+      if(Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+      var max=t.scrollWidth-t.clientWidth; if(max<=0) return;
+      e.preventDefault(); t.scrollLeft += e.deltaY;
+    }, {passive:false});
+  })();
 
   /* 文本域自适应高度 */
   (function(){
@@ -2009,6 +2051,7 @@ body{margin:0!important;overflow:hidden!important;background:#EDF0F5!important;
     renderCtx(); renderPend();
     var t=el('wbToastBox'); if(t){ t.classList.remove('show'); }
     if(window.wbToolsUpd){ window.wbToolsUpd(); setTimeout(window.wbToolsUpd,120); }
+    if(window.wbToolsSync){ window.wbToolsSync(); setTimeout(window.wbToolsSync,160); }
   }
   window.addEventListener('resize', function(){ if(window.wbToolsUpd) window.wbToolsUpd(); });
   if(document.readyState==='complete'){ setTimeout(wbPreload,80); }
@@ -2033,7 +2076,7 @@ body{margin:0!important;overflow:hidden!important;background:#EDF0F5!important;
     var bid='wbm'+Date.now();
     var sentFiles=pendingFiles.slice(); pendingFiles=[]; renderPend();
     chat.insertAdjacentHTML('beforeend','<div class="wb-m wb-m-me"><div class="wb-me">'+filesHTML(sentFiles)
-      +'<div class="wb-m-b">'+ctxChipsHTML()+'<div class="wb-q-txt">'+esc(txt)+'</div></div></div>'
+      +'<div class="wb-m-b"><div class="wb-q-flow">'+ctxChipsHTML()+'<span class="wb-q-txt">'+esc(txt)+'</span></div></div></div>'
       +'<div class="wb-m-av me">高</div></div>');
     chat.insertAdjacentHTML('beforeend','<div class="wb-m" id="'+bid+'"><div class="wb-m-av">智</div><div class="wb-m-b">'
       +'<div class="wb-block"><div class="wb-steps" id="'+bid+'s"></div>'
@@ -2302,14 +2345,15 @@ body{margin:0!important;overflow:hidden!important;background:#EDF0F5!important;
            '原型默认预置：3 个已启用技能（会议纪要生成器 / 日程规划助手 / 归藏PPT技能）、2 个连接器（飞书 / 腾讯会议）、3 个文件，进入会话即可看到完整预览态。'
          ]},
          {h:'发送后的会话回显',items:[
-           '发送后，输入框内的文件卡片与标签收起，内容转为消息：文件以<b>层叠卡片</b>展示在气泡上方（≥ 3 个默认折叠，右上角数量徽标「N ⌄」，点击展开 / 收起），技能与连接器以白底描边标签排在自然语言指令上方，随气泡右对齐。',
+           '发送后，输入框内的文件卡片与标签收起，内容转为消息：文件以<b>层叠卡片</b>展示在气泡上方（≥ 3 个默认折叠，右上角数量徽标「N ⌄」，点击展开 / 收起）。',
+           '技能与连接器的标签与自然语言指令<b>在同一文字流内</b>：标签在前、文字紧跟最后一个标签之后自然换行（不再单独占一行），整体右对齐；气泡底色为<b>淡蓝 #EBF2FF</b>，与 AI 回复的白卡区分。',
            '顺序固定为「技能 → 连接器」，与输入框内的排列一致，便于对照「我给了什么上下文」。',
            '文件的折叠 / 展开状态只作用于本条消息，不与其他消息联动。'
          ]},
          {h:'入口位置与形态',items:[
            '所有功能入口统一收到<b>输入框底部一行</b>，与右侧发送键同一水平位置（原来悬浮在输入框上方）；点击切换<b>选中态</b>（浅蓝底 + 蓝字）。',
            '「知识库」占用原「深度思考」的位置（第一位），「常用语」整项移除；保留「搜索 / 关联会议 / 关联闪念」，交互与原来一致。',
-           '面板宽 384px，一行放不下 6 个带文字入口：<b>知识库 / 技能 / 连接器</b>保留图标 + 文字，<b>搜索 / 关联会议 / 关联闪念</b>收为图标按钮（hover 显示名称），保证同一行全部可见、无需横向滚动。',
+           '面板宽 384px，6 个「图标 + 文字」入口一行放不下（约 420px > 299px 可用宽），因此保持文字不变、<b>超出部分横向滚动</b>查看：支持鼠标滚轮 / 按住拖拽 / 触控板左右滑，两端渐隐提示「还有更多入口」；入口不换行、不收起。',
            '「技能」为本次新增主入口，位置调整为<b>「关联闪念」之后</b>，蓝色描边强调；点击上弹技能浮层（宽 296px，居中锚定输入区上方）。'
            ,'点击技能卡片打开的详情弹窗宽度 <b>430px</b>，以<b>整个首页可视区</b>为基准水平+垂直居中，半透明遮罩铺满全页（含左侧导航），点击遮罩空白处关闭。'
          ]},
